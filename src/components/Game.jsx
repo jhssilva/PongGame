@@ -1,5 +1,7 @@
 import React from "react";
 import Canvas from "./Canvas";
+import { setKeyEventListener } from "./Utils/Commands";
+import { Communication } from "./Utils/Communication";
 
 const Game = (props) => {
   const dimensions = {
@@ -72,6 +74,10 @@ const Game = (props) => {
     // Paint
     ctx.fill();
   };
+
+  setKeyEventListener();
+
+  Communication();
 
   return (
     <div className="game-container">
