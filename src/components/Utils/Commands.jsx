@@ -17,7 +17,6 @@ function logKey(e) {
     return;
   }
   sendMessage(requestGameData(key));
-  console.log(requestGameData(key));
 }
 
 const setKeyEventListener = () => {

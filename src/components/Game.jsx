@@ -23,6 +23,13 @@ const Game = (props) => {
     pageBackground: "#393E46",
   };
 
+  var positions = null;
+
+  const setPositions = (requestDataObject) => {
+    const gameData = JSON.parse(requestDataObject);
+    positions = gameData;
+  };
+
   const draw = (ctx, frameCount, fps) => {
     //Clear screen
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -41,19 +48,25 @@ const Game = (props) => {
     ctx.font = "20px Arial";
     ctx.strokeText(fps, ctx.canvas.width / 2 + 10, ctx.canvas.height - 10);
 
+    // Protection while positions isn't filled
+    if (positions === null) {
+      ctx.fill();
+      return;
+    }
+
     // Player 1 Set
     ctx.fillStyle = colors.players;
     ctx.fillRect(
-      20,
-      ctx.canvas.height / 2 - dimensions.bar.y / 2,
+      20 + positions.player1.x,
+      ctx.canvas.height / 2 - dimensions.bar.y / 2 + positions.player1.y,
       dimensions.bar.x,
       dimensions.bar.y
     );
 
     // Player 2 Set
     ctx.fillRect(
-      ctx.canvas.width - 20 - dimensions.bar.x / 2,
-      ctx.canvas.height / 2 - dimensions.bar.y / 2,
+      ctx.canvas.width - 20 - dimensions.bar.x / 2 + positions.player2.x,
+      ctx.canvas.height / 2 - dimensions.bar.y / 2 + positions.player2.y,
       dimensions.bar.x,
       dimensions.bar.y
     );
@@ -62,8 +75,8 @@ const Game = (props) => {
     ctx.fillStyle = colors.players;
     ctx.beginPath();
     ctx.arc(
-      frameCount * 2,
-      frameCount * 2,
+      frameCount * 1,
+      frameCount * 1,
       dimensions.ball.radius,
       0,
       2 * Math.PI
@@ -77,11 +90,10 @@ const Game = (props) => {
 
   setKeyEventListener();
 
-  Communication();
-
   return (
     <div className="game-container">
       <Canvas draw={draw} dimensions={dimensions} />
+      {/* <Communication onChange={setPositions} /> */}
     </div>
   );
 };
