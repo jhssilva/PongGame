@@ -18,7 +18,7 @@ export const Communication = (props) => {
     };
 
     socket.onmessage = (e) => {
-      // console.log("Get message from server: " + e.data);
+      console.log("Get message from server: " + e.data);
       onChange(e.data);
     };
 
@@ -29,30 +29,38 @@ export const Communication = (props) => {
   return null;
 };
 
-export const JoinGame = () => {
+export const JoinGame = (handleJoinGame) => {
   useEffect(() => {
     // GET request using fetch with error handling
     fetch("http://" + Constants.endpoint + "/" + Constants.endpointJoinGame, {
       method: "get",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
     })
       .then(async (response) => {
-        console.log("heree");
-        console.log(response);
-        const data = await response.json();
-        console.log(data);
+        const data = await response;
 
         // check for error response
         if (!response.ok) {
           // get error message from body or default to response statusText
-          console.log(data);
           const error = (data && data.message) || response.statusText;
+          handleJoinGame(false);
           return Promise.reject(error);
+        }
+
+        if (response.status != 200) {
+          handleJoinGame(false);
+        } else {
+          handleJoinGame(true);
         }
 
         //this.setState({ totalReactPackages: data.total });
       })
       .catch((error) => {
         //this.setState({ errorMessage: error.toString() });
+        handleJoinGame(false);
         console.error("There was an error!", error);
       });
   });

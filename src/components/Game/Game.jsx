@@ -1,7 +1,7 @@
 import React from "react";
 import Canvas from "./Canvas";
-import { setKeyEventListener } from "./Utils/Commands";
-import { Communication } from "./Utils/Communication";
+import { setKeyEventListener } from "../Utils/Commands";
+import { Communication } from "../Utils/Communication";
 
 const Game = (props) => {
   const dimensions = {
