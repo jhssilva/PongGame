@@ -20,7 +20,6 @@ const Game = (props) => {
     const data = JSON.parse(requestDataObject);
     setGameData(data);
     if (firstRequest) {
-      console.log("HERE");
       const { board } = data;
       setDimensions({ width: board.size.width, height: board.size.height });
       firstRequest = false;
@@ -49,26 +48,21 @@ const Game = (props) => {
     ctx.lineTo(ctx.canvas.width / 2, ctx.canvas.height);
     ctx.stroke();
 
-    // Draw Fps
-    ctx.fillStyle = colors.text;
-    ctx.font = "20px Arial";
-    ctx.strokeText(fps, ctx.canvas.width / 2 + 10, ctx.canvas.height - 10);
-
     // Player 1 Set
     ctx.fillStyle = colors.players;
     ctx.fillRect(
       player1.bar.pos.x,
       player1.bar.pos.y,
-      player1.bar.size.height,
-      player1.bar.size.width
+      player1.bar.size.width,
+      player1.bar.size.height
     );
 
     // Player 2 Set
     ctx.fillRect(
       player2.bar.pos.x,
       player2.bar.pos.y,
-      player2.bar.size.height,
-      player2.bar.size.width
+      player2.bar.size.width,
+      player2.bar.size.height
     );
 
     // Ball
@@ -76,7 +70,6 @@ const Game = (props) => {
     ctx.beginPath();
     ctx.arc(ball.pos.x, ball.pos.y, ball.size.radius, 0, 2 * Math.PI);
     ctx.stroke();
-    //ctx.arc(50, 100, 20 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI);
 
     // Paint
     ctx.fill();

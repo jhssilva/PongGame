@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #393e46;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -41,5 +41,3 @@
 .canvas-container {
   padding: 5% 7%;
 }
-
-/* Canvas */
