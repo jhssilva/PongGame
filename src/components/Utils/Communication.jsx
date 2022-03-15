@@ -9,17 +9,15 @@ export const sendMessage = (messageObject) => {
   socket.send(JSON.stringify(messageObject));
 };
 
-export const Communication = (props) => {
-  const { onChange } = props;
-
+export const Communication = (handlePositions) => {
   useEffect(() => {
     socket.onopen = () => {
       console.log("Connected");
     };
 
     socket.onmessage = (e) => {
-      console.log("Get message from server: " + e.data);
-      onChange(e.data);
+      //console.log("Get message from server: " + e.data);
+      handlePositions(e.data);
     };
 
     return () => {
