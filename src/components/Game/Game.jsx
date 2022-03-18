@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Canvas from "./Canvas";
 import { setKeyEventListener } from "../Utils/Commands";
 import { Communication } from "../Utils/Communication";
@@ -48,6 +48,11 @@ const Game = (props) => {
     ctx.lineTo(ctx.canvas.width / 2, ctx.canvas.height);
     ctx.stroke();
 
+    // Score
+    ctx.font = "30px Arial";
+    ctx.strokeText(player1.score, ctx.canvas.width / 2 - 50, 50);
+    ctx.strokeText(player2.score, ctx.canvas.width / 2 + 30, 50);
+
     // Player 1 Set
     ctx.fillStyle = colors.players;
     ctx.fillRect(
@@ -66,16 +71,15 @@ const Game = (props) => {
     );
 
     // Ball
-    ctx.fillStyle = colors.players;
-    ctx.beginPath();
-    ctx.arc(ball.pos.x, ball.pos.y, ball.size.radius, 0, 2 * Math.PI);
-    ctx.stroke();
+    ctx.fillRect(ball.pos.x, ball.pos.y, ball.size.width, ball.size.height);
 
     // Paint
     ctx.fill();
   };
 
-  setKeyEventListener();
+  useEffect(() => {
+    setKeyEventListener();
+  }, []);
   Communication(setPositions);
 
   return (

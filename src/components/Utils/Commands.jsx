@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { sendMessage } from "./Communication";
 import { requestGameData } from "./Constants";
 
