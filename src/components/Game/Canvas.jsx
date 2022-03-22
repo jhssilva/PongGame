@@ -2,8 +2,8 @@ import React from "react";
 import useCanvas from "./useCanvas";
 
 const Canvas = (props) => {
-  const { draw, dimensions, ...rest } = props;
-  const canvasRef = useCanvas(draw);
+  const { gameData, dimensions, ...rest } = props;
+  const canvasRef = useCanvas(gameData);
 
   return (
     <div className="canvas-container">
