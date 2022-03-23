@@ -5,7 +5,7 @@ import { Communication } from "../Utils/Communication";
 
 const Game = (props) => {
   const [dimensions, setDimensions] = useState({ width: 650, height: 480 });
-  const [gameData, setGameData] = useState();
+  const [gameData, setGameData] = useState(null);
 
   var firstRequest = true;
 
@@ -19,14 +19,26 @@ const Game = (props) => {
     }
   };
 
+  const GameDisplay = () => {
+    if (gameData === null) {
+      return (
+        <div>
+          <h1>Waiting for another player to join the game.</h1>
+        </div>
+      );
+    } else {
+      return (
+        <div className="game-container">
+          <Canvas gameData={gameData} dimensions={dimensions} />
+        </div>
+      );
+    }
+  };
+
   setKeyEventListener();
   Communication(setPositions);
 
-  return (
-    <div className="game-container">
-      <Canvas gameData={gameData} dimensions={dimensions} />
-    </div>
-  );
+  return <GameDisplay />;
 };
 
 export default Game;
