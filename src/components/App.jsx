@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./App.css";
 import Game from "./Game/Game";
 import { JoinGame } from "./Utils/Communication";
-import Button from "react-bootstrap/Button";
 
 function App() {
   const [isGame, setIsGame] = useState(false);

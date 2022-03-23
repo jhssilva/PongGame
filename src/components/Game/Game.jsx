@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Canvas from "./Canvas";
 import { setKeyEventListener } from "../Utils/Commands";
 import { Communication } from "../Utils/Communication";
+import Button from "react-bootstrap/Button";
 
 const Game = (props) => {
   const [dimensions, setDimensions] = useState({ width: 650, height: 480 });
@@ -19,26 +20,37 @@ const Game = (props) => {
     }
   };
 
-  const GameDisplay = () => {
+  const GameStatus = () => {
     if (gameData === null) {
+      return <h1>Waiting for another player to join the game.</h1>;
+    } else if (!gameData.gameStatus) {
       return (
         <div>
-          <h1>Waiting for another player to join the game.</h1>
+          {gameData.hasPlayerWon ? (
+            <h1>
+              Player{" "}
+              {gameData.player1.score > gameData.player2.score ? "1 " : "2 "}{" "}
+              Won the game!
+            </h1>
+          ) : (
+            ""
+          )}{" "}
+          <Button>Play Again!</Button>
         </div>
       );
     } else {
-      return (
-        <div className="game-container">
-          <Canvas gameData={gameData} dimensions={dimensions} />
-        </div>
-      );
+      return <Canvas gameData={gameData} dimensions={dimensions} />;
     }
   };
 
   setKeyEventListener();
   Communication(setPositions);
 
-  return <GameDisplay />;
+  return (
+    <div className="game-container">
+      <GameStatus />
+    </div>
+  );
 };
 
 export default Game;

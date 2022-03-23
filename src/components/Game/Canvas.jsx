@@ -5,6 +5,9 @@ const Canvas = (props) => {
   const { gameData, dimensions, ...rest } = props;
   const canvasRef = useCanvas(gameData);
 
+  // Prevent scrolling
+  document.body.style.overflow = "hidden";
+
   return (
     <div className="canvas-container">
       <canvas
