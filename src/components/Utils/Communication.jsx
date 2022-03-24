@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Constants } from "./Constants";
 
 const socket = new WebSocket(
@@ -16,8 +16,11 @@ export const Communication = (handlePositions) => {
     };
 
     socket.onmessage = (e) => {
-      //console.log("Get message from server: " + e.data);
       handlePositions(e.data);
+    };
+
+    socket.onclose = () => {
+      console.log("Closing Connection!");
     };
 
     return () => {
@@ -48,16 +51,13 @@ export const JoinGame = (handleJoinGame) => {
           return Promise.reject(error);
         }
 
-        if (response.status != 200) {
+        if (response.status !== 200) {
           handleJoinGame(false);
         } else {
           handleJoinGame(true);
         }
-
-        //this.setState({ totalReactPackages: data.total });
       })
       .catch((error) => {
-        //this.setState({ errorMessage: error.toString() });
         handleJoinGame(false);
         console.error("There was an error!", error);
       });

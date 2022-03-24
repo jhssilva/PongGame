@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Canvas from "./Canvas";
 import { setKeyEventListener } from "../Utils/Commands";
-import { Communication } from "../Utils/Communication";
+import { Communication, sendMessage } from "../Utils/Communication";
 import Button from "react-bootstrap/Button";
 
 const Game = (props) => {
@@ -9,6 +9,17 @@ const Game = (props) => {
   const [gameData, setGameData] = useState(null);
 
   var firstRequest = true;
+
+  const handleOnClickPlayAgain = () => {
+    // Send message back to the server
+    if (gameData != null) {
+      const play = { play: true };
+      setGameData(null);
+      sendMessage(play);
+    } else {
+      console.log("Click only once in the play again");
+    }
+  };
 
   const setPositions = (requestDataObject) => {
     const data = JSON.parse(requestDataObject);
@@ -35,7 +46,7 @@ const Game = (props) => {
           ) : (
             ""
           )}{" "}
-          <Button>Play Again!</Button>
+          <Button onClick={handleOnClickPlayAgain}>Play Again!</Button>
         </div>
       );
     } else {
