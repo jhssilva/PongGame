@@ -1,5 +1,5 @@
 export const Constants = {
-  endpoint: "localhost:8080",
+  endpoint: "foo-bar-dot-testpong.oa.r.appspot.com", //"localhost:8080", //"serverponggame.uc.r.appspot.com",
   endpointGameWebSocket: "ws",
   endpointJoinGame: "join",
 };

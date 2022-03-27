@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Constants } from "./Constants";
 
 const socket = new WebSocket(
-  "ws://" + Constants.endpoint + "/" + Constants.endpointGameWebSocket
+  "wss://" + Constants.endpoint + "/" + Constants.endpointGameWebSocket
 );
 
 export const sendMessage = (messageObject) => {
@@ -33,7 +33,7 @@ export const Communication = (handlePositions) => {
 export const JoinGame = (handleJoinGame) => {
   useEffect(() => {
     // GET request using fetch with error handling
-    fetch("http://" + Constants.endpoint + "/" + Constants.endpointJoinGame, {
+    fetch("https://" + Constants.endpoint + "/" + Constants.endpointJoinGame, {
       method: "get",
       headers: {
         "Content-Type": "application/json",
