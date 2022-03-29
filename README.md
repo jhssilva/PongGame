@@ -2,8 +2,14 @@
 
 <img width="640" alt="image" src="https://user-images.githubusercontent.com/24280639/160660517-8c3cb56b-970e-448b-a028-02a95cf51172.png">
 
-###[Website](https://ponggameclient.web.app/) -> Be aware that the website can be down. This because it was created with the free version. It's need 2 players to be played. 
-It was created with some specifications, the game needs improvement, buttons and context. But the requirements were just this ones, so I'm aware that the game can improve a lot. 
+### Info
+[Website](https://ponggameclient.web.app/)
+Be aware that the website can be down. This because it was created with the a free version of GCloud. 
+
+### Requirements
+It's need 2 players to be played. 
+It was created with some specifications, the game needs improvement, buttons and context. 
+The requirements were meet for this application.
 
 # Getting Started with Create React App
 
